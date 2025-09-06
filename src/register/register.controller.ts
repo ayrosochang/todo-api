@@ -31,7 +31,6 @@ export class RegisterController {
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   async getProfile(@CurrentUser() user: User) {
-    console.log('Profile accessed by user:', user);
     return user;
   }
 }

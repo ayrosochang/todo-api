@@ -28,8 +28,6 @@ export class RegisterService {
       throw new UnauthorizedException('User already exists');
     }
 
-    console.log('TEST');
-
     // Hash password
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
