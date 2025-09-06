@@ -38,29 +38,6 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## API Endpoints
-
-- `GET /` - Welcome message
-- `GET /api/health` - Health check endpoint
-
-## Environment Variables
-
-Copy `.env.example` to `.env` and configure the following variables:
-
-- `NODE_ENV` - Environment (development, production)
-- `PORT` - Port number (default: 3000)
-- `CORS_ORIGIN` - CORS origin URL
-
-## Project Structure
-
-```
-src/
-├── app.controller.ts    # Main application controller
-├── app.module.ts        # Root module
-├── app.service.ts       # Main application service
-└── main.ts             # Application entry point
-```
-
 ## Tech Stack
 
 - **Framework**: NestJS
@@ -77,6 +54,7 @@ src/
 4. Start development server: `npm run start:dev`
 5. Visit http://localhost:3000
 
-## License
+## Running the db
 
-This project is [MIT licensed](LICENSE).
+1. Run `docker compose up`
+2. Run `npx drizzle-kit migrate`
