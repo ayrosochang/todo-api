@@ -5,13 +5,14 @@ import { RegisterService } from './register.service';
 import { RegisterController } from './register.controller';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { DatabaseModule } from '../db/database.module';
+import { jwtConstants } from './constants';
 
 @Module({
   imports: [
     DatabaseModule,
     PassportModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET || 'default',
+      secret: jwtConstants.secret,
       signOptions: { expiresIn: '24h' },
     }),
   ],
