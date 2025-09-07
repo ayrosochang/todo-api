@@ -12,8 +12,6 @@ import {
 } from '@nestjs/common';
 import { CreateTaskDto, UpdateTaskDto, TaskResponseDto } from './dto/task.dto';
 import { JwtAuthGuard } from '../register/guards/jwt-auth.guard';
-import { CurrentUser } from '../register/decorators/current-user.decorator';
-import { User } from 'src/register/types/register.types';
 
 @Controller('tasks')
 @UseGuards(JwtAuthGuard)
@@ -22,7 +20,6 @@ export class TaskController {
 
   @Post()
   async createTask(
-    @CurrentUser() user: User,
     @Body() createTaskDto: CreateTaskDto,
   ): Promise<TaskResponseDto> {
     return await this.taskService.create(createTaskDto);
