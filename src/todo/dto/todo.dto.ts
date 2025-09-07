@@ -1,5 +1,5 @@
 import { TaskResponseDto } from 'src/task/dto/task.dto';
-import { IsString } from 'class-validator';
+import { IsString, IsNotEmpty, MaxLength, MinLength, IsOptional } from 'class-validator';
 
 export class TodoResponseDto {
   id: string;
@@ -28,5 +28,17 @@ export class TodoResponseDto {
 
 export class TodoDto {
   @IsString()
+  @IsNotEmpty()
+  @MinLength(1, { message: 'Title must be at least 1 character long' })
+  @MaxLength(255, { message: 'Title must not exceed 255 characters' })
   title: string;
+}
+
+export class UpdateTodoDto {
+  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(1, { message: 'Title must be at least 1 character long' })
+  @MaxLength(255, { message: 'Title must not exceed 255 characters' })
+  title?: string;
 }
