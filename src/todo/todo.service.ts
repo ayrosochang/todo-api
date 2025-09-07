@@ -44,11 +44,11 @@ export class TodoService {
     const userTodos = await this.databaseService.getDb().query.todos.findMany({
       where: eq(todos.userId, userId),
       with: {
-        tasks: true,
+        tasks: {
+          orderBy: (tasks, { asc }) => [asc(tasks.position)],
+        },
       },
     });
-
-    console.log(userTodos);
 
     return userTodos.map((todo) => new TodoResponseDto(todo));
   }

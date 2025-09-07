@@ -19,7 +19,10 @@ export class TodoResponseDto {
     this.title = todo.title || '';
     this.createdAt = todo.createdAt;
     this.updatedAt = todo.updatedAt;
-    this.tasks = todo.tasks || [];
+    // Convert raw task data to TaskResponseDto instances
+    this.tasks = todo.tasks
+      ? todo.tasks.map((task) => new TaskResponseDto(task))
+      : [];
   }
 }
 
