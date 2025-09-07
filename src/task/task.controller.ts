@@ -6,7 +6,9 @@ import {
   Param,
   Patch,
   Delete,
+  HttpCode,
   UseGuards,
+  HttpStatus,
   Controller,
   ParseUUIDPipe,
 } from '@nestjs/common';
@@ -19,6 +21,7 @@ export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
   @Post()
+  @HttpCode(HttpStatus.CREATED)
   async createTask(
     @Body() createTaskDto: CreateTaskDto,
   ): Promise<TaskResponseDto> {
