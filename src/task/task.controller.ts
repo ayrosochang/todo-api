@@ -43,4 +43,11 @@ export class TaskController {
     await this.taskService.delete(id);
     return { message: 'Task deleted successfully' };
   }
+
+  @Get('todo/:todoId')
+  async getTasksByTodoId(
+    @Param('todoId', new ParseUUIDPipe()) todoId: string,
+  ): Promise<TaskResponseDto[]> {
+    return await this.taskService.findAllByTodoId(todoId);
+  }
 }

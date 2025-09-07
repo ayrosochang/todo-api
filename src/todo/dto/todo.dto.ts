@@ -1,4 +1,5 @@
 import { TaskResponseDto } from 'src/task/dto/task.dto';
+import { IsString } from 'class-validator';
 
 export class TodoResponseDto {
   id: string;
@@ -23,5 +24,6 @@ export class TodoResponseDto {
 }
 
 export class TodoDto {
+  @IsString()
   title: string;
 }
