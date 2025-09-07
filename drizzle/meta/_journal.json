@@ -15,6 +15,20 @@
       "when": 1757179542868,
       "tag": "0001_todo",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1757250163359,
+      "tag": "0002_update_schema",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1757251571125,
+      "tag": "0003_todo_date",
+      "breakpoints": true
     }
   ]
 }
