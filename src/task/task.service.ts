@@ -9,13 +9,13 @@ export class TaskService {
   constructor(private readonly databaseService: DatabaseService) {}
 
   async create(createTaskDto: CreateTaskDto): Promise<TaskResponseDto> {
-    // Get the next position (example: count + 1)
-    const taskCount = await this.databaseService.db
-      .select({ count: sql<number>`count(*)` })
+    // Get the highest position number
+    const maxPositionResult = await this.databaseService.db
+      .select({ maxPosition: sql<number>`max(cast(position as decimal))` })
       .from(tasks)
       .where(eq(tasks.todoId, createTaskDto.todoId));
 
-    const position = (taskCount[0]?.count || 0) + 1;
+    const position = Math.floor(maxPositionResult[0]?.maxPosition || 0) + 1;
 
     const newTask = await this.databaseService.db
       .insert(tasks)
@@ -44,7 +44,7 @@ export class TaskService {
       .returning();
 
     if (updatedTask.length === 0) {
-      throw new Error('Todo not found');
+      throw new Error('Task not found');
     }
 
     return new TaskResponseDto(updatedTask[0]);
